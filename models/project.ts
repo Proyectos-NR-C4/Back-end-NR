@@ -1,7 +1,8 @@
 import { Schema, model } from 'mongoose';
 import { Enum_ProjectPhase, Enum_ProjectStatus } from './enums';
-import UserModel from './user';
+import {UserModel} from './user';
 
+//TypeScript
 interface Project {
   name: string;
   budget: number;
@@ -12,6 +13,7 @@ interface Project {
   leader: Schema.Types.ObjectId;
 }
 
+//Mongoose
 const ProjectSchema = new Schema<Project>({
   name: {
     type: String,
@@ -47,4 +49,4 @@ const ProjectSchema = new Schema<Project>({
 
 const ProjectModel = model('Project', ProjectSchema);
 
-export default ProjectModel;
+export {ProjectModel};

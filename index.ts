@@ -1,7 +1,7 @@
 import connectDB from './db/db';
-import UserModel from './models/user';
+import {UserModel} from './models/user';
 import * as Enums from './models/enums';
-import ProjectModel from './models/project';
+import {ProjectModel} from './models/project';
 
 // const Customer = require('./models/customer');
 // const Order = require('./models/order');
@@ -68,6 +68,33 @@ import ProjectModel from './models/project';
 const main = async () => {
   await connectDB();
 
+  //CREAR USUARIO
+  const usuario = await UserModel.create({
+    })
+
+    //OBTENER USUARIOS
+    await UserModel.find({
+
+    })
+
+    //EDITAR USUARIO
+    await UserModel.findOneAndUpdate({
+
+    })
+
+    //EDITAR UN SOLO USUARIO
+    await UserModel.findOne({
+      //codigo
+    }).then((u)=>{
+      console.log("usuario encontrado", u)
+    }).catch((e)=>{
+      console.error("error", e)
+    })
+
+    //ELIMINAR USUARIO
+    await UserModel.findOneAndDelete({
+
+    })
   // order = await Order.find({ customer_id: '6186629a2dde6bb7f645aeaf' });
   // console.log(order);
 };
