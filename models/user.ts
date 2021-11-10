@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import { Enum_UserRole, Enum_UserStatus } from './enums';
+import { Schema, model } from "mongoose";
+import { Enum_UserRole, Enum_UserStatus } from "./enums";
 
 // const Customer = require('./customer');
 
@@ -26,22 +26,16 @@ const UserSchema = new Schema<User>({
     required: true,
     unique: true,
     validate: {
-        validator: function (correo) {
-            return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correo);
-       //   },
-      // validator: async (correo) => {
-      //   if (!(correo.includes('@') && correo.includes('.'))) {
-      //     return false;
-      //   }
+      validator: function (correo) {
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correo);
+        //   },
+        // validator: async (correo) => {
+        //   if (!(correo.includes('@') && correo.includes('.'))) {
+        //     return false;
+        //   }
       },
-      message: 'Por favor ingrese un correo válido',
+      message: "Por favor ingrese un correo válido",
     },
-    // validate: {
-    //   validator: function (v) {
-    //     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
-    //   },
-    //   message: 'Please enter a valid correo',
-    // },
   },
   documento: {
     type: String,
@@ -60,6 +54,6 @@ const UserSchema = new Schema<User>({
   },
 });
 
-const UserModel = model('User', UserSchema);
+const UserModel = model("User", UserSchema);
 
-export {UserModel};
+export { UserModel };

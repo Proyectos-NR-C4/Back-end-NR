@@ -6,20 +6,20 @@ const main = async () => {
   await connectDB();
 
   //CREAR USUARIO
-  await UserModel.create({
-    nombre: "Nairo",
-    apellido: "Rojas",
-    documento: "7171305",
-    correo: "nairo.rojas@gmail.com",
-    rol: Enum_UserRole.administrador,
-    estatus: Enum_UserStatus.autorizado,
-  })
-    .then((u) => {
-      console.log("Usuario creado", u);
-    })
-    .catch((e) => {
-      console.error("Error creando el usuario ", e);
-    });
+  // await UserModel.create({
+  //   nombre: "Camilo",
+  //   apellido: "Rojas",
+  //   documento: "1016109248",
+  //   correo: "camilo.rojas@gmail.com",
+  //   rol: Enum_UserRole.lider,
+  //   estatus: Enum_UserStatus.pendiente,
+  // })
+  //   .then((u) => {
+  //     console.log("Usuario creado", u);
+  //   })
+  //   .catch((e) => {
+  //     console.error("Error creando el usuario ", e);
+  //   });
 
   // //OBTENER USUARIO
   // await UserModel.find()
@@ -31,12 +31,12 @@ const main = async () => {
 
   //USUARIO FILTRADO
 
-  // await UserModel.find({correo: 'tatiana.rojas@gmail.com'})
-  // .then((u)=>{
-  //   console.log("Usuario localizado ", u)
-  // }).catch((e)=>{
-  //   console.error('Usuario no encontrado ' , e)
-  // })
+  await UserModel.find({estado: 'pendiente'})
+  .then((u)=>{
+    console.log("Usuario localizado ", u)
+  }).catch((e)=>{
+    console.error('Usuario no encontrado ' , e)
+  })
 };
 
 main();
