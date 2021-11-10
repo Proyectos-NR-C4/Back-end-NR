@@ -30,13 +30,33 @@ const main = async () => {
   // })
 
   //USUARIO FILTRADO
+  // await UserModel.find({ estado: "pendiente" })
+  //   .then((u) => {
+  //     console.log("Usuario localizado ", u);
+  //   })
+  //   .catch((e) => {
+  //     console.error("Usuario no encontrado ", e);
+  //   });
 
-  await UserModel.find({estado: 'pendiente'})
+  //EDITAR USUARIO
+  // await UserModel.findOneAndUpdate({ correo: 'camilo.rojas@gmail.com'}, {nombre:'Brayan', apellido: "Rojitas"})
+  // .then((u)=>{
+  //   console.log("Usuario actualizado ", u)
+  // }).catch((e)=>{
+  //   console.error("Error actualizando el usuario ", e)
+  // })
+
+  //ELIMINAR USUARIO
+  await UserModel.findOneAndDelete({ correo: 'camilo.rojas@gmail.com'})
   .then((u)=>{
-    console.log("Usuario localizado ", u)
+    console.log("Usuario eliminado ", u)
   }).catch((e)=>{
-    console.error('Usuario no encontrado ' , e)
+    console.log("Error eliminando usuario ", e)
   })
+
+
+
+
 };
 
 main();
