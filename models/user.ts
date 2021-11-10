@@ -4,52 +4,55 @@ import { Enum_UserRole, Enum_UserStatus } from './enums';
 // const Customer = require('./customer');
 
 export interface User {
-  name: string;
-  lastName: string;
-  email: string;
-  document: string;
-  role: Enum_UserRole;
-  status: Enum_UserStatus;
+  nombre: string;
+  apellido: string;
+  correo: string;
+  documento: string;
+  rol: Enum_UserRole;
+  estatus: Enum_UserStatus;
 }
 
 const UserSchema = new Schema<User>({
-  name: {
+  nombre: {
     type: String,
     required: true,
   },
-  lastName: {
+  apellido: {
     type: String,
     required: true,
   },
-  email: {
+  correo: {
     type: String,
     required: true,
     unique: true,
     validate: {
-      validator: async (email) => {
-        if (!(email.includes('@') && email.includes('.'))) {
-          return false;
-        }
+        validator: function (correo) {
+            return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correo);
+       //   },
+      // validator: async (correo) => {
+      //   if (!(correo.includes('@') && correo.includes('.'))) {
+      //     return false;
+      //   }
       },
-      message: 'Please enter a valid email',
+      message: 'Por favor ingrese un correo válido',
     },
     // validate: {
     //   validator: function (v) {
     //     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
     //   },
-    //   message: 'Please enter a valid email',
+    //   message: 'Please enter a valid correo',
     // },
   },
-  document: {
+  documento: {
     type: String,
     required: true,
   },
-  role: {
+  rol: {
     type: String,
     required: true,
     enum: Enum_UserRole,
   },
-  status: {
+  estatus: {
     type: String,
     required: true,
     enum: Enum_UserStatus,
