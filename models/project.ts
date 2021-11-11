@@ -13,7 +13,7 @@ interface Project {
   estado: Enum_ProjectStatus;
   fase: Enum_ProjectPhase;
   lider: Schema.Types.ObjectId;
-  objetivos: [Schema.Types.ObjectId]
+  //objetivos: [Schema.Types.ObjectId]
 }
 
 //Mongoose
@@ -48,12 +48,12 @@ const ProjectSchema = new Schema<Project>({
     type: Schema.Types.ObjectId,
     ref: UserModel,
   },
-  objetivos: [
-      {
-        type: Schema.Types.ObjectId,
-      ref: ObjectiveModel
-    }
-  ]
+  // objetivos: [
+  //     {
+  //       type: Schema.Types.ObjectId,
+  //     ref: ObjectiveModel
+  //   }
+  // ]
 });
 
 const ProjectModel = model('Project', ProjectSchema);

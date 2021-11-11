@@ -32,6 +32,11 @@ enum Enum_ObjectiveType {
   especifico = 'Específico',
 }
 
+enum Enum_InscriptionStatus {
+  aceptada = 'Aceptada',
+  rechadazada = 'Rechazada'
+}
+
 export {
   Enum_UserRole,
   Enum_UserStatus,
@@ -39,4 +44,5 @@ export {
   Enum_ProjectStatus,
   Enum_ProjectPhase,
   Enum_ObjectiveType,
+  Enum_InscriptionStatus
 };

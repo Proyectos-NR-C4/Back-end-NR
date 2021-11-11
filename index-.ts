@@ -2,6 +2,7 @@ import connectDB from "./db/db";
 import { Enum_UserRole, Enum_UserStatus } from "./models/enums";
 import { UserModel } from "./models/user";
 
+//INDEX PARA CREAR USUARIOS, FORMA 1
 const main = async () => {
   await connectDB();
 
