@@ -1,5 +1,6 @@
 import connectDB from './db/db';
-//import {UserModel} from './models/user';
+import {UserModel} from './models/user';
+import * as Enums from './models/enums';
 import {ProjectModel} from './models/project';
 import { ObjectiveModel } from './models/objective';
 
@@ -35,22 +36,35 @@ import { ObjectiveModel } from './models/objective';
 const main = async () => {
   await connectDB();
     
-  //CREAR PROYECTO
-  ProjectModel.create({
-    nombre: 'Proyecto 4',
-    presupuesto: 400000,
-    fechaInicio: Date.now(),
-    fechaFinal: new Date('2022/12/15'),
-    lider: '618c4b3139486bcaa4106d1d',
-    //lider: '618c4e7c583425af3a526934',
-    objetivos: ['618c8a63aca6ffabc203c09e', '618c8aaf9615f38beaf46cf6']
+  //CREAR OBJETIVOS
+  // const objet1 = await ObjectiveModel.create({
+  //   descripcion: 'Es es el objetivo general del proyecto',
+  //   tipo: Enums.Enum_ObjectiveType.general
+
+  // })
+
+  const objet2 = await ObjectiveModel.create({
+    descripcion: 'Es son los objetivos específicos del proyecto',
+    tipo: Enums.Enum_ObjectiveType.especifico
+
   })
-    .then((p) => {
-      console.log('Projecto crando: ', p);
-    })
-    .catch((e) => {
-      console.error("Error creando el proyecto ", e);
-    });
+  
+  
+  //CREAR PROYECTO
+  // ProjectModel.create({
+  //   nombre: 'Proyecto 2',
+  //   presupuesto: 150000,
+  //   fechaInicio: Date.now(),
+  //   fechaFinal: new Date('2022/12/05'),
+  //   //lider: '618c4b3139486bcaa4106d1d',
+  //   lider: '618c4e7c583425af3a526934',
+  // })
+  //   .then((p) => {
+  //     console.log('project', p);
+  //   })
+  //   .catch((e) => {
+  //     console.error(e);
+  //   });
   
     //BUSCAR PROYECTO
     // const proyecto = await ProjectModel.find({nombre: 'Proyecto 2'}).populate('lider')

@@ -1,86 +1,62 @@
-import connectDB from './db/db';
-import {UserModel} from './models/user';
-import * as Enums from './models/enums';
-import {ProjectModel} from './models/project';
-
-
-// const Customer = require('./models/customer');
-// const Order = require('./models/order');
-
-// Customer.insertMany([
-//   {
-//     name: 'Daniel',
-//     email: 'dsl@c.com',
-//   },
-//   {
-//     name: 'Susana',
-//     email: 's@c.com',
-//   },
-// ])
-//   .then((c) => {
-//     console.log(c);
-//   })
-//   .catch((e) => {
-//     console.error(e);
-//   });
-
-// const customers = await Customer.find().then((c) => {
-//   return c;
-// });
-// Order.create({
-//   total: 1500,
-//   customer_id: customers[0]._id,
-// });
-
-// UserModel.create({
-//   name: 'Daniel',
-//   lastName: 'Saldarriaga',
-//   document: '1065377193',
-//   email: 'dsl1@c.com',
-//   role: Enums.Enum_UserRole.estudiante,
-// })
-//   .then((u) => {
-//     console.log(u);
-//   })
-//   .catch((e) => {
-//     console.error(e);
-//   });
-
-// ProjectModel.create({
-//   name: 'Test',
-//   budget: 120,
-//   startDate: Date.now(),
-//   finishDate: new Date('2022/11/10'),
-//   leader: '6187d3a20a1d2fc06ea9b1f0',
-// })
-//   .then((p) => {
-//     console.log('project', p);
-//   })
-//   .catch((e) => {
-//     console.error(e);
-//   });
-
-// ProjectModel.findOne({ _id: '6187d906541df1983cd78518' })
-//   .populate('leader')
-//   .then((p) => {
-//     console.log(p);
-//   });
+import connectDB from "./db/db";
+import { Enum_UserRole, Enum_UserStatus } from "./models/enums";
+import { UserModel } from "./models/user";
 
 const main = async () => {
   await connectDB();
 
   //CREAR USUARIO
-  await UserModel.create({
-    correo: 'nairo.rojas@gmail.com',
-    identificacion: '7171305',
-    nombre: 'Nairo',
-    apellido: 'Rojas'
-    }).then((u)=>{
-      console.log('Usuario creado', u)
-    }).catch((e)=>{
-      console.error('Error creando el usuario ', e)
-      })
+  // await UserModel.create({
+  //   nombre: "Camilo",
+  //   apellido: "Rojas",
+  //   documento: "1016109248",
+  //   correo: "camilo.rojas@gmail.com",
+  //   rol: Enum_UserRole.lider,
+  //   estatus: Enum_UserStatus.pendiente,
+  // })
+  //   .then((u) => {
+  //     console.log("Usuario creado", u);
+  //   })
+  //   .catch((e) => {
+  //     console.error("Error creando el usuario ", e);
+  //   });
 
-  };
+  // //OBTENER USUARIO
+  // await UserModel.find()
+  // .then((u)=>{
+  //   console.log("Usuario localizado ", u)
+  // }).catch((e)=>{
+  //   console.error('Usuario no encontrado ' , e)
+  // })
+
+  //USUARIO FILTRADO
+  // await UserModel.find({ estado: "pendiente" })
+  //   .then((u) => {
+  //     console.log("Usuario localizado ", u);
+  //   })
+  //   .catch((e) => {
+  //     console.error("Usuario no encontrado ", e);
+  //   });
+
+  //EDITAR USUARIO
+  // await UserModel.findOneAndUpdate({ correo: 'camilo.rojas@gmail.com'}, {nombre:'Brayan', apellido: "Rojitas"})
+  // .then((u)=>{
+  //   console.log("Usuario actualizado ", u)
+  // }).catch((e)=>{
+  //   console.error("Error actualizando el usuario ", e)
+  // })
+
+  //ELIMINAR USUARIO
+  await UserModel.findOneAndDelete({ correo: 'camilo.rojas@gmail.com'})
+  .then((u)=>{
+    console.log("Usuario eliminado ", u)
+  }).catch((e)=>{
+    console.log("Error eliminando usuario ", e)
+  })
+
+
+
+
+};
 
 main();
