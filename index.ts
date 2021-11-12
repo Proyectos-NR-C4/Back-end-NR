@@ -8,10 +8,10 @@ import {
 } from "./models/enums";
 import { ObjectiveModel } from "./models/objective";
 
-//INDEX FORMA 4: One to Many=> Quitar la parte de "proyectos" del archivo de Objetive y agregar los "objetivos" a "Proyectos"
-const creacionProyectoConObjetivos2 = async () => {
+//INDEX FORMA PELIGROSA PERO EFECTIVA: No hace referencias, registra los elementos directamente en el One
+// Crea el proyecto y agrega manualmente los objetivos, No usa el modelo de Objetivos
+const creacionProyectoConObjetivos3 = async () => {
   //CREAR EL USUARIOS
-
   const usuarioInicial = await UserModel.create({
     nombre: "Mery",
     apellido: "Grimaldos",
@@ -19,23 +19,6 @@ const creacionProyectoConObjetivos2 = async () => {
     correo: "rmerygrim@gmail.com",
     rol: Enum_UserRole.administrador,
     estatus: Enum_UserStatus.autorizado,
-  });
-
-  //1. CREAR LOS OBJETIVOS
-
-  const objetivoGeneral = await ObjectiveModel.create({
-    descripcion: "Soy el objetivo General del proyecto",
-    tipo: Enum_ObjectiveType.general,
-  });
-
-  const objetivoEspecifico1 = await ObjectiveModel.create({
-    descripcion: "Soy el primer objetivo especifico del proyecto",
-    tipo: Enum_ObjectiveType.especifico,
-  });
-
-  const objetivoEspecifico2 = await ObjectiveModel.create({
-    descripcion: "Soy el segundo objetivo especifico del proyecto",
-    tipo: Enum_ObjectiveType.especifico,
   });
 
   //2. CREAR PROYECTO Y AGREGAR EL ARRAY DE OBJETIVOS
@@ -47,19 +30,29 @@ const creacionProyectoConObjetivos2 = async () => {
     presupuesto: 150000,
     lider: usuarioInicial._id,
     objetivos: [
-      objetivoGeneral._id,
-      objetivoEspecifico1._id,
-      objetivoEspecifico2._id,
+      {
+        descripcion: "Este es el objetivo General del proyecto",
+        tipo: Enum_ObjectiveType.general,
+      },
+      {
+        descripcion: "Este es el primer el objetivo Especifico del proyecto",
+        tipo: Enum_ObjectiveType.especifico,
+      },
+      {
+        descripcion: "Este es el segundo objetivo Especifico del proyecto",
+        tipo: Enum_ObjectiveType.especifico,
+      },
     ],
   });
 };
 
+const consultarProyectoConObjetivos3 = async () => {
+  const proyecto = await ProjectModel.find({ _id: "618dd7f90a8bf714834a158f" });
+  //console.log("Proyecto encontrado: ", proyecto)
+};
+
 const main = async () => {
   await connectDB();
-  const proyecto = await ProjectModel.find({
-    _id: "618dc4c8df4c0f83b4f3acfa",
-  }).populate("objetivos");
-  console.log("Proyecto encontrado: ", JSON.stringify(proyecto));
 };
 
 main();
