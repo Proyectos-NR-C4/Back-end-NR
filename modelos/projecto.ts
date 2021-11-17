@@ -1,19 +1,17 @@
 import { Schema, model } from 'mongoose';
-import { Enum_ObjectiveType, Enum_ProjectPhase, Enum_ProjectStatus } from './enums';
-import {UserModel} from './user';
-import {ObjectiveModel} from './objective'
+import { Enum_TipoObjectivo, Enum_FaseProjecto, Enum_EstatusProjecto } from './enums';
+import {UserModel} from './usuario';
 
-
-  //TypeScript
+ 
 interface Project {
   nombre: string;
   presupuesto: number;
   fechaInicio: Date;
   fechaFinal: Date;
-  estado: Enum_ProjectStatus;
-  fase: Enum_ProjectPhase;
+  estado: Enum_EstatusProjecto;
+  fase: Enum_FaseProjecto;
   lider: Schema.Types.ObjectId;
-  objetivos: [{descripcion: String, tipo: Enum_ObjectiveType}]
+  objetivos: [{descripcion: String, tipo: Enum_TipoObjectivo}]
 }
 
 //Mongoose
@@ -36,13 +34,13 @@ const ProjectSchema = new Schema<Project>({
   },
   estado: {
     type: String,
-    enum: Enum_ProjectStatus,
-    default: Enum_ProjectStatus.inactivo,
+    enum: Enum_EstatusProjecto,
+    default: Enum_EstatusProjecto.INACTIVO,
   },
   fase: {
     type: String,
-    enum: Enum_ProjectPhase,
-    default: Enum_ProjectPhase.null,
+    enum: Enum_FaseProjecto,
+    default: Enum_FaseProjecto.NULL,
   },
   lider: {
     type: Schema.Types.ObjectId,
@@ -55,12 +53,12 @@ const ProjectSchema = new Schema<Project>({
     }, 
     tipo: {
       type: String,
-      enum: Enum_ObjectiveType,
+      enum: Enum_TipoObjectivo,
       required: true,
     }
   }]
 });
 
-const ProjectModel = model('Project', ProjectSchema);
+const ProjectModel = model('Projecto', ProjectSchema);
 
 export {ProjectModel};

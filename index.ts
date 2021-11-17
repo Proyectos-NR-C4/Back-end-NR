@@ -1,58 +1,45 @@
 import connectDB from "./db/db";
-import { UserModel } from "./models/user";
-import { ProjectModel } from "./models/project";
+import { UserModel } from "./modelos/usuario";
+import { ProjectModel } from "./modelos/projecto";
 import {
-  Enum_ObjectiveType,
-  Enum_UserRole,
-  Enum_UserStatus,
-} from "./models/enums";
-import { ObjectiveModel } from "./models/objective";
+  Enum_TipoObjectivo,
+  Enum_RolUsuario,
+  Enum_EstatusUsuario,
+} from "./modelos/enums";
 
-//INDEX FORMA PELIGROSA PERO EFECTIVA: No hace referencias, registra los elementos directamente en el One
-// Crea el proyecto y agrega manualmente los objetivos, No usa el modelo de Objetivos
-const creacionProyectoConObjetivos3 = async () => {
-  //CREAR EL USUARIOS
+const main = async () => {
+  await connectDB();
+
   const usuarioInicial = await UserModel.create({
-    nombre: "Mery",
-    apellido: "Grimaldos",
-    documento: "23324410",
-    correo: "rmerygrim@gmail.com",
-    rol: Enum_UserRole.administrador,
-    estatus: Enum_UserStatus.autorizado,
+    nombre: "Javier",
+    apellido: "Ramirez",
+    documento: "79789654",
+    correo: "javier.ramirez@gmail.com",
+    rol: Enum_RolUsuario.ADMINISTRADOR,
+    estatus: Enum_EstatusUsuario.AUTORIZADO,
   });
 
-  //2. CREAR PROYECTO Y AGREGAR EL ARRAY DE OBJETIVOS
-
   const proyectoCreado = await ProjectModel.create({
-    nombre: "Proyecto 1",
+    nombre: "Proyecto 2",
     fechaInicio: new Date("2021/11/11"),
-    fechaFinal: new Date("2021/11/19"),
-    presupuesto: 150000,
+    fechaFinal: new Date("2021/12/20"),
+    presupuesto: 200000,
     lider: usuarioInicial._id,
     objetivos: [
       {
         descripcion: "Este es el objetivo General del proyecto",
-        tipo: Enum_ObjectiveType.general,
+        tipo: Enum_TipoObjectivo.GENERAL,
       },
       {
         descripcion: "Este es el primer el objetivo Especifico del proyecto",
-        tipo: Enum_ObjectiveType.especifico,
+        tipo: Enum_TipoObjectivo.ESPECIFICO,
       },
       {
         descripcion: "Este es el segundo objetivo Especifico del proyecto",
-        tipo: Enum_ObjectiveType.especifico,
+        tipo: Enum_TipoObjectivo.ESPECIFICO,
       },
     ],
   });
-};
-
-const consultarProyectoConObjetivos3 = async () => {
-  const proyecto = await ProjectModel.find({ _id: "618dd7f90a8bf714834a158f" });
-  //console.log("Proyecto encontrado: ", proyecto)
-};
-
-const main = async () => {
-  await connectDB();
 };
 
 main();
