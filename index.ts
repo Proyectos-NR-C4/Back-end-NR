@@ -1,58 +1,30 @@
-import connectDB from "./db/db";
-import { UserModel } from "./models/user";
-import { ProjectModel } from "./models/project";
-import {
-  Enum_ObjectiveType,
-  Enum_UserRole,
-  Enum_UserStatus,
-} from "./models/enums";
-import { ObjectiveModel } from "./models/objective";
+import express from 'express';
+import cors from 'cors';
+import { ApolloServer } from 'apollo-server-express';
+import connectDB from './db/db';
 
-//INDEX FORMA PELIGROSA PERO EFECTIVA: No hace referencias, registra los elementos directamente en el One
-// Crea el proyecto y agrega manualmente los objetivos, No usa el modelo de Objetivos
-const creacionProyectoConObjetivos3 = async () => {
-  //CREAR EL USUARIOS
-  const usuarioInicial = await UserModel.create({
-    nombre: "Mery",
-    apellido: "Grimaldos",
-    documento: "23324410",
-    correo: "rmerygrim@gmail.com",
-    rol: Enum_UserRole.administrador,
-    estatus: Enum_UserStatus.autorizado,
-  });
+import types from './graphql/types';
+import resolvers from './graphql/resolvers';
 
-  //2. CREAR PROYECTO Y AGREGAR EL ARRAY DE OBJETIVOS
+import dotenv from 'dotenv';
+import typeDefs from './graphql/types';
 
-  const proyectoCreado = await ProjectModel.create({
-    nombre: "Proyecto 1",
-    fechaInicio: new Date("2021/11/11"),
-    fechaFinal: new Date("2021/11/19"),
-    presupuesto: 150000,
-    lider: usuarioInicial._id,
-    objetivos: [
-      {
-        descripcion: "Este es el objetivo General del proyecto",
-        tipo: Enum_ObjectiveType.general,
-      },
-      {
-        descripcion: "Este es el primer el objetivo Especifico del proyecto",
-        tipo: Enum_ObjectiveType.especifico,
-      },
-      {
-        descripcion: "Este es el segundo objetivo Especifico del proyecto",
-        tipo: Enum_ObjectiveType.especifico,
-      },
-    ],
-  });
-};
+dotenv.config();
 
-const consultarProyectoConObjetivos3 = async () => {
-  const proyecto = await ProjectModel.find({ _id: "618dd7f90a8bf714834a158f" });
-  //console.log("Proyecto encontrado: ", proyecto)
-};
+const server = new ApolloServer({
+  typeDefs: typeDefs,
+  resolvers: resolvers,
+});
+const app = express();
 
-const main = async () => {
+app.use(express.json());
+
+app.use(cors());
+
+app.listen({ port: process.env.PORT }, async () => {
   await connectDB();
-};
+  await server.start();
+  server.applyMiddleware({ app });
 
-main();
+  console.log(`🚀 Server ready at http://localhost:${process.env.PORT}${server.graphqlPath}`);
+});
