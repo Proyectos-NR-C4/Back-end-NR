@@ -1,18 +1,18 @@
 import { Schema, model } from "mongoose";
-import { Enum_UserRole, Enum_UserStatus } from "./enums";
+import { Enum_RolUsuario, Enum_EstadoUsuario } from "../enum/enums";
 
 // const Customer = require('./customer');
 
-export interface User {
+export interface Usuario {
   nombre: string;
   apellido: string;
   correo: string;
   documento: string;
-  rol: Enum_UserRole;
-  estatus: Enum_UserStatus;
+  rol: Enum_RolUsuario;
+  estado: Enum_EstadoUsuario;
 }
 
-const UserSchema = new Schema<User>({
+const EsquemaUsuario = new Schema<Usuario>({
   nombre: {
     type: String,
     required: true,
@@ -44,16 +44,15 @@ const UserSchema = new Schema<User>({
   rol: {
     type: String,
     required: true,
-    enum: Enum_UserRole,
+    enum: Enum_RolUsuario,
   },
-  estatus: {
+  estado: {
     type: String,
-    required: true,
-    enum: Enum_UserStatus,
-    default: Enum_UserStatus.pendiente,
+    enum: Enum_EstadoUsuario,
+    default: Enum_EstadoUsuario.PENDIENTE,
   },
 });
 
-const UserModel = model("User", UserSchema);
+const ModeloUsuario = model("Usuario", EsquemaUsuario);
 
-export { UserModel };
+export { ModeloUsuario };

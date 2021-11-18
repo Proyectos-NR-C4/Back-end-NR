@@ -1,12 +1,12 @@
-import connectDB from "./db/db";
-import { UserModel } from "./models/user";
-import { ProjectModel } from "./models/project";
+import connectDB from "../db/db";
+import { UserModel } from "../modelos/usuario/usuario";
+import { ProjectModel } from "../modelos/proyecto/proyecto";
 import {
   Enum_ObjectiveType,
   Enum_UserRole,
   Enum_UserStatus,
-} from "./models/enums";
-import { ObjectiveModel } from "./models/objective";
+} from "../modelos/enum/enums";
+import { ObjectiveModel } from "../modelos/objetivo/objectivo";
 
 //INDEX FORMA PELIGROSA PERO EFECTIVA: No hace referencias, registra los elementos directamente en el One
 // Crea el proyecto y agrega manualmente los objetivos, No usa el modelo de Objetivos

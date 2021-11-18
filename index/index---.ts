@@ -1,8 +1,8 @@
 import connectDB from './db/db';
-import {UserModel} from './models/user';
-import * as Enums from './models/enums';
-import {ProjectModel} from './models/project';
-import { ObjectiveModel } from './models/objective';
+import {UserModel} from './models/usuario/usuario';
+import * as Enums from './models/enum/enums';
+import {ProjectModel} from './models/proyecto/projecto';
+import { ObjectiveModel } from './models/objectivo';
 
 
 //INDEX PARA CREAR OBJETIVOS, FORMA 1

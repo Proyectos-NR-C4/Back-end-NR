@@ -1,12 +1,12 @@
 import connectDB from "./db/db";
-import { UserModel } from "./models/user";
-import { ProjectModel } from "./models/project";
+import { UserModel } from "./models/usuario/usuario";
+import { ProjectModel } from "./models/proyecto/projecto";
 import {
   Enum_ObjectiveType,
   Enum_UserRole,
   Enum_UserStatus,
-} from "./models/enums";
-import { ObjectiveModel } from "./models/objective";
+} from "./models/enum/enums";
+import { ObjectiveModel } from "./models/objectivo";
 
 //INDEX MIXTO, FORMA 3: meter dentro de una función, la creación y en el main el query
 

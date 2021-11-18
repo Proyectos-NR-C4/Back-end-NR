@@ -1,20 +1,18 @@
-import express from 'express';
-import cors from 'cors';
-import { ApolloServer } from 'apollo-server-express';
-import connectDB from './db/db';
-
-import types from './graphql/types';
-import resolvers from './graphql/resolvers';
-
-import dotenv from 'dotenv';
-import typeDefs from './graphql/types';
+import express from "express";
+import cors from "cors";
+import { ApolloServer } from "apollo-server-express";
+import connectDB from "./db/db";
+import { tipos } from "./graphql/tipos";
+import { resolvers } from "./graphql/resolvers";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 const server = new ApolloServer({
-  typeDefs: typeDefs,
+  typeDefs: tipos,
   resolvers: resolvers,
 });
+
 const app = express();
 
 app.use(express.json());
@@ -26,5 +24,5 @@ app.listen({ port: process.env.PORT }, async () => {
   await server.start();
   server.applyMiddleware({ app });
 
-  console.log(`🚀 Server ready at http://localhost:${process.env.PORT}${server.graphqlPath}`);
+  console.log("Servidor listo");
 });

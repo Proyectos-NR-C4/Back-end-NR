@@ -1,6 +1,6 @@
-import connectDB from "./db/db";
-import { Enum_UserRole, Enum_UserStatus } from "./models/enums";
-import { UserModel } from "./models/user";
+import connectDB from "../db/db";
+import { Enum_UserRole, Enum_UserStatus } from "../modelos/enum/enums";
+import { UserModel } from "../modelos/usuario/usuario";
 
 //INDEX PARA CREAR USUARIOS, FORMA 1
 const main = async () => {

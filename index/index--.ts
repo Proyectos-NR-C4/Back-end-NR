@@ -1,7 +1,7 @@
 import connectDB from './db/db';
 //import {UserModel} from './models/user';
-import {ProjectModel} from './models/project';
-import { ObjectiveModel } from './models/objective';
+import {ProjectModel} from './models/proyecto/projecto';
+import { ObjectiveModel } from './models/objectivo';
 
 
 //INDEX PARA CREAR PROYECTOS, FORMA 1

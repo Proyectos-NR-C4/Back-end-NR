@@ -1,12 +1,12 @@
 import connectDB from "./db/db";
-import { UserModel } from "./models/user";
-import { ProjectModel } from "./models/project";
+import { UserModel } from "./models/usuario/usuario";
+import { ProjectModel } from "./models/proyecto/projecto";
 import {
   Enum_ObjectiveType,
   Enum_UserRole,
   Enum_UserStatus,
-} from "./models/enums";
-import { ObjectiveModel } from "./models/objective";
+} from "./models/enum/enums";
+import { ObjectiveModel } from "./models/objectivo";
 
 //INDEX FORMA 4: One to Many=> Quitar la parte de "proyectos" del archivo de Objetive y agregar los "objetivos" a "Proyectos"
 const creacionProyectoConObjetivos2 = async () => {

@@ -1,8 +1,8 @@
 import connectDB from "./db/db";
-import { UserModel } from "./models/user";
-import { ProjectModel } from "./models/project";
-import { Enum_ObjectiveType, Enum_UserRole, Enum_UserStatus } from "./models/enums";
-import { ObjectiveModel } from "./models/objective";
+import { UserModel } from "./models/usuario/usuario";
+import { ProjectModel } from "./models/proyecto/projecto";
+import { Enum_ObjectiveType, Enum_UserRole, Enum_UserStatus } from "./models/enum/enums";
+import { ObjectiveModel } from "./models/objectivo";
 
 
 //INDEX MIXTO, FORMA 2
