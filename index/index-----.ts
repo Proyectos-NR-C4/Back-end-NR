@@ -55,17 +55,18 @@ const crearProyectoConObjetivos = async () => {
 const main = async () => {
   await connectDB();
 
-  const proyecto = await ProjectModel.findOne({_id: "618da8a94073ea05ab9fc2bf"});
+  const proyecto = await ProjectModel.findOne({
+    _id: "618da8a94073ea05ab9fc2bf",
+  });
   console.log("Encontré el proyecto: ", proyecto);
 
-  const objetivos = await ObjectiveModel.find({proyect: '618da8a94073ea05ab9fc2bf'});
+  const objetivos = await ObjectiveModel.find({
+    proyect: "618da8a94073ea05ab9fc2bf",
+  });
 
   console.log("Los objetivos del proyecto son: ", objetivos);
 
-  const ProyectoConObjetivos = {...proyecto, objetivos: objetivos};
+  const ProyectoConObjetivos = { ...proyecto, objetivos: objetivos };
   console.log("El proyecto con objetivos es: ", ProyectoConObjetivos);
-
-
-
 };
 main();

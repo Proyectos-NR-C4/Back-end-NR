@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from "apollo-server-express";
 
 const tiposUsuario = gql`
   type Usuario {
@@ -35,5 +35,4 @@ const tiposUsuario = gql`
     eliminarUsuario(_id: String, correo: String): Usuario
   }
 `;
-
 export { tiposUsuario };

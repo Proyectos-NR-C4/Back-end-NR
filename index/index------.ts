@@ -54,13 +54,12 @@ const creacionProyectoConObjetivos2 = async () => {
   });
 };
 
-const consultarProyectoConObjetivos3 = async ()=>{
+const consultarProyectoConObjetivos3 = async () => {
   const proyecto = await ProjectModel.find({
     _id: "618dc4c8df4c0f83b4f3acfa",
   }).populate("objetivos");
   console.log("Proyecto encontrado: ", JSON.stringify(proyecto));
-
-}
+};
 
 const main = async () => {
   await connectDB();

@@ -48,16 +48,13 @@ const main = async () => {
   // })
 
   //ELIMINAR USUARIO
-  await UserModel.findOneAndDelete({ correo: 'camilo.rojas@gmail.com'})
-  .then((u)=>{
-    console.log("Usuario eliminado ", u)
-  }).catch((e)=>{
-    console.log("Error eliminando usuario ", e)
-  })
-
-
-
-
+  await UserModel.findOneAndDelete({ correo: "camilo.rojas@gmail.com" })
+    .then((u) => {
+      console.log("Usuario eliminado ", u);
+    })
+    .catch((e) => {
+      console.log("Error eliminando usuario ", e);
+    });
 };
 
 main();
