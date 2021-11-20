@@ -22,7 +22,7 @@ const esquemaUsuario = new Schema({
       message: "Por favor ingrese un correo válido",
     },
   },
-  documento: {
+  identificacion: {
     type: String,
     required: true,
     unique: true,
