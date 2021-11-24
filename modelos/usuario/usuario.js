@@ -22,6 +22,10 @@ const esquemaUsuario = new Schema({
       message: "Por favor ingrese un correo válido",
     },
   },
+  password: {
+    type: String,
+    required: true
+  },
   identificacion: {
     type: String,
     required: true,
