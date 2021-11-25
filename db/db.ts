@@ -1,10 +1,9 @@
-import { connect } from 'mongoose';
+import mongoose from 'mongoose';
 
 const connectDB = async () => {
-  return await connect(
-    //'mongodb+srv://nairor:4029@adminproyectsnr.dkeup.mongodb.net/adminproyectsnr?retryWrites=true&w=majority'
-    'mongodb+srv://nairor:4029@adminproyects-tech5.zjqwk.mongodb.net/AdminProyectsDatabase?'
-  ).then(()=>{
+  return await mongoose
+  .connect(process.env.DATABASE_URL)
+  .then(()=>{
     console.log ("Conexion Exitosa")
   }).catch((e)=>{
     console.error("Error conectándose a la DB", e)

@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { UserModel } from "./usuario";
-import { ProjectModel } from "./projecto";
+import { ProjectModel } from "./proyecto";
 
 interface Avance {
   description: string;

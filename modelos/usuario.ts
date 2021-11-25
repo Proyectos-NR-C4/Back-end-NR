@@ -3,9 +3,9 @@ import {
   Enum_RolUsuario,
   Enum_EstatusUsuario,
   Enum_EstatusSubscripcion,
-  Enum_EstatusProjecto,
-  Enum_FaseProjecto,
-  Enum_TipoObjectivo,
+  Enum_EstatusProyecto,
+  Enum_FaseProyecto,
+  Enum_TipoObjetivo,
   Enum_EstatusInscription,
 } from "./enums";
 
