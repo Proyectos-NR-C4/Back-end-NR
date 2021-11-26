@@ -7,7 +7,7 @@ import {
   Enum_FaseProyecto,
   Enum_TipoObjetivo,
   Enum_EstatusInscription,
-} from "./enums";
+} from "../enums/enums";
 
 // const Customer = require('./customer');
 

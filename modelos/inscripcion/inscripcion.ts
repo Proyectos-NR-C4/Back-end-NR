@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
-import { UserModel } from "./usuario";
-import { Enum_EstatusInscription } from "./enums";
+import { UserModel } from "../usuario/usuario";
+import { Enum_EstatusInscription } from "../enums/enums";
 
 interface Inscripcion {
     fechIngreso: Date
