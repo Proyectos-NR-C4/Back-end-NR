@@ -12,7 +12,7 @@ interface Project {
   fase: Enum_FaseProyecto;
   lider: Schema.Types.ObjectId;
   objetivos: [{descripcion: String, tipo: Enum_TipoObjetivo}]
-  avances: Enum_FaseProyecto;
+  
 }
 
 //Mongoose
@@ -63,23 +63,10 @@ const projectSchema = new Schema(
       },
     ],
   },
-  {
-    toJSON: { virtuals: true }, 
-    toObject: { virtuals: true }, 
-  }
+  
 );
 
-projectSchema.virtual('avances', {
-  ref: 'Avance',
-  localField: '_id',
-  foreignField: 'proyecto',
-});
 
-projectSchema.virtual('inscripciones', {
-  ref: 'Inscripcion',
-  localField: '_id',
-  foreignField: 'proyecto',
-});
 
 const ProjectModel = model('Proyecto', projectSchema);
 
