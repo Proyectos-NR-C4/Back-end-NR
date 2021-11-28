@@ -1,26 +1,29 @@
-import { Schema, model } from "mongoose";
-import {
-  Enum_RolUsuario,
-  Enum_EstatusUsuario,
-  Enum_EstatusSubscripcion,
-  Enum_EstatusProyecto,
-  Enum_FaseProyecto,
-  Enum_TipoObjetivo,
-  Enum_EstatusInscription,
-} from "../enums/enums";
+import mongoose from 'mongoose';
 
-// const Customer = require('./customer');
+const { Schema, model } = mongoose;
+// import {
+//   Enum_RolUsuario,
+//   Enum_EstatusUsuario,
+//   Enum_EstatusSubscripcion,
+//   Enum_EstatusProyecto,
+//   Enum_FaseProyecto,
+//   Enum_TipoObjetivo,
+//   Enum_EstatusInscription,
+// } from "../enums/enums.js";
 
-export interface User {
-  nombre: string;
-  apellido: string;
-  correo: string;
-  documento: string;
-  rol: Enum_RolUsuario;
-  estatus: Enum_EstatusUsuario;
-}
 
-const UserSchema = new Schema<User>({
+
+//export interface User {
+  //nombre: string;
+  //apellido: string;
+  //correo: string;
+  //documento: string;
+  //rol: Enum_RolUsuario;
+  //estatus: Enum_EstatusUsuario;
+//}
+
+const UserSchema = new Schema(
+  {
   nombre: {
     type: String,
     required: true,
@@ -52,13 +55,13 @@ const UserSchema = new Schema<User>({
   rol: {
     type: String,
     required: true,
-    enum: Enum_RolUsuario,
+    enum: ['ESTUDIANTE', 'LIDER', 'ADMINISTRADOR'],
   },
   estatus: {
     type: String,
     required: true,
-    enum: Enum_EstatusUsuario,
-    default: Enum_EstatusUsuario.PENDIENTE,
+    enum: ['PENDIENTE', 'AUTORIZADO', 'NO_AUTORIZADO'],
+    default: 'PENDIENTE',
   },
 });
 
