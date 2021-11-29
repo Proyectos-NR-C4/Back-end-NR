@@ -21,12 +21,12 @@ const resolversUsuario ={
             const usuarioCreado = await UserModel.create({
                 nombre: args.nombre,
                 apellido: args.apellido,
-                documento: args.documento,
+                identificacion: args.identificacion,
                 correo: args.correo,
                 rol: args.rol,
             });
-            if(Object.keys(args).includes('estatus')){
-                usuarioCreado.estatus = args.estatus;
+            if(Object.keys(args).includes('estado')){
+                usuarioCreado.estado = args.estado;
             }
             return usuarioCreado;
         },
@@ -49,7 +49,9 @@ const resolversUsuario ={
               correo: args.correo,
               rol: args.rol,
               estado: args.estado,
-            });
+            },
+            { new: true }
+            );
       
             return usuarioEditado;
           },

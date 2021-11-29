@@ -28,7 +28,7 @@ const tiposProyecto = gql`
       presupuesto: Float!
       fechaInicio: Date!
       fechaFin: Date!
-      estado: Enum_EstatusProyecto!
+      estado: Enum_estadoProyecto!
       fase: Enum_FaseProyecto!
       lider: String!
       objetivos: [crearObjetivo]
@@ -41,11 +41,12 @@ const tiposProyecto = gql`
       presupuesto: Float!
       fechaInicio: Date!
       fechaFin: Date!
-      estado: Enum_EstatusProyecto!
+      estado: Enum_estadoProyecto!
       fase: Enum_FaseProyecto!
       lider: Usuario!
       objetivos: [Objetivo]
       avances: [Avance]
+      inscripciones: [Inscripcion]
       
   }
   

@@ -1,26 +1,6 @@
 import mongoose from 'mongoose';
 
 const { Schema, model } = mongoose;
-// import {
-//   Enum_RolUsuario,
-//   Enum_EstatusUsuario,
-//   Enum_EstatusSubscripcion,
-//   Enum_EstatusProyecto,
-//   Enum_FaseProyecto,
-//   Enum_TipoObjetivo,
-//   Enum_EstatusInscription,
-// } from "../enums/enums.js";
-
-
-
-//export interface User {
-  //nombre: string;
-  //apellido: string;
-  //correo: string;
-  //documento: string;
-  //rol: Enum_RolUsuario;
-  //estatus: Enum_EstatusUsuario;
-//}
 
 const UserSchema = new Schema(
   {
@@ -48,7 +28,7 @@ const UserSchema = new Schema(
       message: "Por favor ingrese un correo válido",
     },
   },
-  documento: {
+  identificacion: {
     type: String,
     required: true,
   },
@@ -57,7 +37,7 @@ const UserSchema = new Schema(
     required: true,
     enum: ['ESTUDIANTE', 'LIDER', 'ADMINISTRADOR'],
   },
-  estatus: {
+  estado: {
     type: String,
     required: true,
     enum: ['PENDIENTE', 'AUTORIZADO', 'NO_AUTORIZADO'],

@@ -9,9 +9,9 @@ const tiposUsuario = gql`
       nombre: String!
       apellido: String!
       correo: String!
-      documento: String!
-      estatus: Enum_EstatusUsuario
-      rol: Enum_RolUsuario!
+      identificacion: String!
+      estado: Enum_EstadoUsuario
+      rol: Enum_Rol!
       
 
   }
@@ -26,9 +26,9 @@ const tiposUsuario = gql`
         nombre: String!
         apellido: String!
         correo: String!
-        documento: String!
-        rol: Enum_RolUsuario!
-        estatus: Enum_EstatusUsuario
+        identificacion: String!
+        rol: Enum_Rol!
+        estado: Enum_EstadoUsuario
 
       ):Usuario
 
@@ -38,10 +38,10 @@ const tiposUsuario = gql`
       _id: String!
       nombre: String!
       apellido: String!
-      documento: String!
+      identificacion: String!
       correo: String!
-      rol: Enum_RolUsuario!
-      estatus: Enum_EstatusUsuario
+      rol: Enum_Rol!
+      estado: Enum_EstadoUsuario
     ): Usuario
   }
   
