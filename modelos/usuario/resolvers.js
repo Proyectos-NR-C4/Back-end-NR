@@ -2,10 +2,18 @@ import { ModeloUsuario } from "./usuario.js";
 
 const resolversUsuario = {
   Query: {
-    Usuarios: async (parent, args) => {
-      const usuarios = await ModeloUsuario.find();
-      return usuarios;
+    Usuarios: async (parent, args, context) => {
+      console.log("context: ", context);
+      if (context.userData.rol === "ADMINISTRADOR") {
+        const usuarios = await ModeloUsuario.find();
+        return usuarios;
+      } else if (context.userData.rol === "ESTUDIANTE") {
+        const usuarios = await ModeloUsuario.find({ rol: "ESTUDIANTE" });
+        return usuarios;
+      }
+      return null;
     },
+
     Usuario: async (parent, args) => {
       const usuario = await ModeloUsuario.findById(args._id);
       return usuario;
