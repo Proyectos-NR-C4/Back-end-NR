@@ -17,6 +17,7 @@ const resolversAvance = {
       return avanceFiltrado;
     },
   },
+  
   Mutation: {
     crearAvance: async (parents, args) => {
       const avanceCreado = ModeloAvance.create({

@@ -1,12 +1,12 @@
 import { ModeloUsuario } from "../../modelos/usuario/usuario.js";
-import bcryp from "bcrypt";
+import bcrypt from 'bcrypt';
 import { generateToken } from "../../utils/tokensUtils.js";
 
 const resolversAutenticacion = {
   Mutation: {
     registro: async (parent, args) => {
-      const salt = await bcryp.genSalt(10);
-      const hashedPassword = await bcryp.hash(args.password, salt);
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(args.password, salt);
       const usuarioCreado = await ModeloUsuario.create({
         nombre: args.nombre,
         apellido: args.apellido,
@@ -27,11 +27,12 @@ const resolversAutenticacion = {
         }),
       };
     },
+
     login: async (parent, args) => {
       const usuarioEncontrado = await ModeloUsuario.findOne({
         correo: args.correo,
       });
-      if (await bcryp.compare(args.password, usuarioEncontrado.password))
+      if (await bcrypt.compare(args.password, usuarioEncontrado.password))
         return {
           token: generateToken({
             _id: usuarioEncontrado._id,
@@ -43,14 +44,14 @@ const resolversAutenticacion = {
           }),
         };
     },
+
     refreshToken: async (parent, args, context) => {
       console.log("contexto: ", context);
       if (!context.userData) {
         return {
           error: "token no válido",
         };
-      }
-      else{
+      } else {
         return {
           token: generateToken({
             _id: context.userData._id,
@@ -60,11 +61,9 @@ const resolversAutenticacion = {
             corro: context.userData.correo,
             rol: context.userData.rol,
           }),
-        }
+        };
       }
     },
-
-    /**Validar que el contexto tenga la inf de user, si, sí, refrescar el token, si, no, devolver al login para crear uno nuevo */
   },
 };
 

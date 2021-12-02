@@ -2,15 +2,13 @@ import { ModeloProyecto } from "./proyecto.js";
 
 const resolversProyecto = {
   Query: {
-    Proyectos: async (parent, args) => {
-      const proyectos = await ModeloProyecto.find()
-        .populate("avances")
-        .populate("inscripciones");
+    Proyectos: async (parent, args, context) => {
+      const proyectos = await ModeloProyecto.find();
       return proyectos;
     },
   },
   Mutation: {
-    crearProyecto: async (parent, args) => {
+    crearProyecto: async (parent, args, context) => {
       const proyectoCreado = await ModeloProyecto.create({
         nombre: args.nombre,
         estado: args.estado,
@@ -22,6 +20,56 @@ const resolversProyecto = {
         objetivos: args.objetivos,
       });
       return proyectoCreado;
+    },
+    
+    editarProyecto: async (parent, args) => {
+      const proyectoEditado = await ModeloProyecto.findByIdAndUpdate(
+        args._id,
+        { ...args.campos },
+        { new: true }
+      );
+      return proyectoEditado;
+    },
+
+    crearObjetivo: async (parent, args) => {
+      const proyectoConObjetivo = await ModeloProyecto.findByIdAndUpdate(
+        args.idProyecto,
+        {
+          $addToSet: {
+            objetivos: { ...args.campos },
+          },
+        },
+        { new: true }
+      );
+
+      return proyectoConObjetivo;
+    },
+    editarObjetivo: async (parent, args) => {
+      const proyectoEditado = await ModeloProyecto.findByIdAndUpdate(
+        args.idProyecto,
+        {
+          $set: {
+            [`objetivos.${args.indexObjetivo}.descripcion`]: args.campos.descripcion,
+            [`objetivos.${args.indexObjetivo}.tipo`]: args.campos.tipo,
+          },
+        },
+        { new: true }
+      );
+      return proyectoEditado;
+    },
+    eliminarObjetivo: async (parent, args) => {
+      const proyectoObjetivo = await ModeloProyecto.findByIdAndUpdate(
+        { _id: args.idProyecto },
+        {
+          $pull: {
+            objetivos: {
+              _id: args.idObjetivo,
+            },
+          },
+        },
+        { new: true }
+      );
+      return proyectoObjetivo;
     },
   },
 };

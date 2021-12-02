@@ -24,7 +24,7 @@ const esquemaUsuario = new Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   identificacion: {
     type: String,
@@ -41,6 +41,24 @@ const esquemaUsuario = new Schema({
     enum: ["PENDIENTE", "AUTORIZADO", "NO_AUTORIZADO"],
     default: "PENDIENTE",
   },
+});
+
+esquemaUsuario.virtual("proyectosLiderados", {
+  ref: "Proyecto",
+  localField: "_id",
+  foreignField: "lider",
+});
+
+esquemaUsuario.virtual("avancesCreados", {
+  ref: "Avance",
+  localField: "_id",
+  foreignField: "creadoPor",
+});
+
+esquemaUsuario.virtual("inscripciones", {
+  ref: "Inscripcion",
+  localField: "_id",
+  foreignField: "estudiante",
 });
 
 const ModeloUsuario = model("Usuario", esquemaUsuario);

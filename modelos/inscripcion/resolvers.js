@@ -7,6 +7,7 @@ const resolverInscripciones = {
       return inscripciones;
     },
   },
+  
   Mutation: {
     crearInscripcion: async (parent, args) => {
       const inscripcionCreada = await ModeloInscripcion.create({
@@ -16,6 +17,7 @@ const resolverInscripciones = {
       });
       return inscripcionCreada;
     },
+    
     aprobarInscripcion: async (parent, args) => {
       const inscripcionAprobada = await ModeloInscripcion.findByIdAndUpdate(
         args._id,
