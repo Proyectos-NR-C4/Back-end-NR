@@ -1,5 +1,5 @@
 import { gql } from "apollo-server-express";
-import { tiposEnums } from "../modelos/enum/tipos.js";
+import { tiposEnums } from "../modelos/enums/tipos.js";
 import { tiposUsuario } from "../modelos/usuario/tipos.js";
 import { tiposProyecto } from "../modelos/proyecto/tipos.js";
 import { tiposAvance } from "../modelos/avance/tipos.js";

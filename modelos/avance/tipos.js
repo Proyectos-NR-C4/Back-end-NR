@@ -9,7 +9,6 @@ const tiposAvance = gql`
     proyecto: Proyecto!
     creadoPor: Usuario!
   }
-
   type Query {
     Avances: [Avance]
     filtrarAvance(_id: String!): [Avance]
