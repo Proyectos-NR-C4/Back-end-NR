@@ -1,5 +1,5 @@
 import { ModeloUsuario } from "./usuario.js";
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 
 const resolversUsuario = {
   Query: {
@@ -83,13 +83,7 @@ const resolversUsuario = {
     editarUsuario: async (parent, args) => {
       const usuarioEditado = await ModeloUsuario.findByIdAndUpdate(
         args._id,
-        {
-          nombre: args.nombre,
-          apellido: args.apellido,
-          identificacion: args.identificacion,
-          correo: args.correo,
-          estado: args.estado,
-        },
+        { ...args.campos },
         { new: true }
       );
       return usuarioEditado;

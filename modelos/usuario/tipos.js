@@ -1,6 +1,15 @@
 import { gql } from "apollo-server-express";
 
 const tiposUsuario = gql`
+  input camposUsuario {
+    nombre: String
+    apellido: String
+    identificacion: String
+    correo: String
+    rol: Enum_Rol
+    estado: Enum_EstadoUsuario
+    inscripciones: Enum_EstadoInscripcion
+  }
   type Usuario {
     _id: ID!
     nombre: String!
@@ -30,14 +39,7 @@ const tiposUsuario = gql`
       password: String!
     ): Usuario
 
-    editarUsuario(
-      _id: String!
-      nombre: String!
-      apellido: String!
-      identificacion: String!
-      correo: String!
-      estado: Enum_EstadoUsuario!
-    ): Usuario
+    editarUsuario(_id: String, campos: camposUsuario): Usuario
 
     eliminarUsuario(_id: String, correo: String): Usuario
   }

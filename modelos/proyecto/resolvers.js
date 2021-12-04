@@ -1,3 +1,5 @@
+import { UniqueTypeNamesRule } from "graphql";
+import { ModeloInscripcion } from "../inscripcion/inscripcion.js";
 import { ModeloProyecto } from "./proyecto.js";
 
 const resolversProyecto = {
@@ -9,25 +11,36 @@ const resolversProyecto = {
   },
   Mutation: {
     crearProyecto: async (parent, args, context) => {
-      const proyectoCreado = await ModeloProyecto.create({
-        nombre: args.nombre,
-        estado: args.estado,
-        fase: args.fase,
-        fechaInicio: args.fechaInicio,
-        fechaFin: args.fechaFin,
-        presupuesto: args.presupuesto,
-        lider: args.lider,
-        objetivos: args.objetivos,
-      });
+      // const proyectoCreado = await ModeloProyecto.create({
+      //   nombre: args.nombre,
+      //   estado: args.estado,
+      //   fase: args.fase,
+      //   fechaInicio: args.fechaInicio,
+      //   fechaFin: args.fechaFin,
+      //   presupuesto: args.presupuesto,
+      //   lider: args.lider,
+      //   objetivos: args.objetivos,
+      // });
+      // return proyectoCreado;
+      const proyectoCreado = await ModeloProyecto.create(
+        { ...args.campos },
+        { new: true }
+      );
       return proyectoCreado;
     },
-    
+
     editarProyecto: async (parent, args) => {
       const proyectoEditado = await ModeloProyecto.findByIdAndUpdate(
         args._id,
         { ...args.campos },
         { new: true }
       );
+      if (args.estado === "CERRADO") {
+        ModeloInscripcion.updateMany({ fechaEgreso: new Date() });
+          $set: {
+            estado: "INACTIVO"
+          }
+      }
       return proyectoEditado;
     },
 
@@ -38,7 +51,7 @@ const resolversProyecto = {
           $addToSet: {
             objetivos: { ...args.campos },
           },
-        },
+        }, 
         { new: true }
       );
 
@@ -49,7 +62,8 @@ const resolversProyecto = {
         args.idProyecto,
         {
           $set: {
-            [`objetivos.${args.indexObjetivo}.descripcion`]: args.campos.descripcion,
+            [`objetivos.${args.indexObjetivo}.descripcion`]:
+              args.campos.descripcion,
             [`objetivos.${args.indexObjetivo}.tipo`]: args.campos.tipo,
           },
         },
