@@ -27,7 +27,6 @@ const tiposUsuario = gql`
     Usuarios: [Usuario]
     Usuario(_id: String!): Usuario
   }
-
   type Mutation {
     crearUsuario(
       nombre: String!

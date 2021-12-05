@@ -1,4 +1,3 @@
-import { UniqueTypeNamesRule } from "graphql";
 import { ModeloInscripcion } from "../inscripcion/inscripcion.js";
 import { ModeloProyecto } from "./proyecto.js";
 
@@ -11,23 +10,23 @@ const resolversProyecto = {
   },
   Mutation: {
     crearProyecto: async (parent, args, context) => {
-      // const proyectoCreado = await ModeloProyecto.create({
-      //   nombre: args.nombre,
-      //   estado: args.estado,
-      //   fase: args.fase,
-      //   fechaInicio: args.fechaInicio,
-      //   fechaFin: args.fechaFin,
-      //   presupuesto: args.presupuesto,
-      //   lider: args.lider,
-      //   objetivos: args.objetivos,
-      // });
-      // return proyectoCreado;
-      const proyectoCreado = await ModeloProyecto.create(
-        { ...args.campos },
-        { new: true }
-      );
+      const proyectoCreado = await ModeloProyecto.create({
+        nombre: args.nombre,
+        estado: args.estado,
+        fase: args.fase,
+        fechaInicio: args.fechaInicio,
+        fechaFin: args.fechaFin,
+        presupuesto: args.presupuesto,
+        lider: args.lider,
+        objetivos: args.objetivos,
+      });
       return proyectoCreado;
-    },
+    //   const proyectoCreado = await ModeloProyecto.create(
+    //     { ...args.campos },
+    //     { new: true }
+    //   );
+    //   return proyectoCreado;
+     },
 
     editarProyecto: async (parent, args) => {
       const proyectoEditado = await ModeloProyecto.findByIdAndUpdate(
